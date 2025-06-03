@@ -47,7 +47,7 @@ if __name__ == "__main__":
         dataloader = torch.utils.data.DataLoader(
             dataset,
             collate_fn=dataset.collater,
-            batch_size=1,
+            batch_size=64, # this was 1, change not tested
             num_workers=1,
             pin_memory=False,
         )

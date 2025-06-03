@@ -108,7 +108,8 @@ class DurFlexDataset(BaseSpeechDataset):
                 "{}/units/{}/{}.pt".format(
                     hparams["processed_data_dir"], spk_name, item_name
                 )
-            )
+            ),
+            weights_only=False
         )
 
         sample["unit"] = torch.IntTensor(unit_item["units"])

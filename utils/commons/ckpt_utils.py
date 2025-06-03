@@ -8,6 +8,7 @@ def get_last_checkpoint(work_dir, steps=None):
     checkpoint = None
     last_ckpt_path = None
     ckpt_paths = get_all_ckpts(work_dir, steps)
+    print("ckpt_paths:", ckpt_paths)
     if len(ckpt_paths) > 0:
         last_ckpt_path = ckpt_paths[0]
         checkpoint = torch.load(last_ckpt_path, map_location="cpu", weights_only=True)
@@ -19,6 +20,7 @@ def get_all_ckpts(work_dir, steps=None):
         ckpt_path_pattern = f"{work_dir}/model_ckpt_steps_*.ckpt"
     else:
         ckpt_path_pattern = f"{work_dir}/model_ckpt_steps_{steps}.ckpt"
+    print("ckpt path: ", ckpt_path_pattern, glob.glob(ckpt_path_pattern))
     return sorted(
         glob.glob(ckpt_path_pattern),
         key=lambda x: -int(re.findall(".*steps\_(\d+)\.ckpt", x)[0]),

@@ -1,6 +1,6 @@
 # task
 binary_data_dir: ""
-work_dir: "" # experiment directory.
+work_dir: "./checkpoints/DurFlex" # experiment directory.
 infer: false # infer
 amp: false
 seed: 1234

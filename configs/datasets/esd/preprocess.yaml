@@ -1,7 +1,7 @@
-work_dir: "/workspace/checkpoints"
-raw_data_dir: '/workspace/dataset/Emotion_Speech_Dataset'
-processed_data_dir: '/workspace/dataset/processed/durflex'
-binary_data_dir: '/workspace/dataset/binary/durflex'
+work_dir: "./checkpoints"
+raw_data_dir: './dataset/Emotion_Speech_Dataset'
+processed_data_dir: './dataset/processed/durflex'
+binary_data_dir: './dataset/binary/durflex'
 preprocess_cls: configs.datasets.esd.preprocess.ESDPreprocess
 
 binarization_args:
@@ -21,10 +21,10 @@ vocoder_config: configs/models/vocoder/bigvgan16k.yaml
 num_spk: 10
 audio_num_mel_bins: 80
 out_dims: 80 # Model's output dimension
-audio_sample_rate: 16000
-hop_size: 256 # For 22050Hz, 275 ~= 12.5 ms (0.0125 * sample_rate)
-win_size: 1024 # For 22050Hz, 1100 ~= 50 ms (If None, win_size: fft_size) (0.05 * sample_rate)
-fft_size: 1024 # Extra window size is filled with 0 paddings to match this parameter
+audio_sample_rate: 22050
+hop_size: 275 # For 22050Hz, 275 ~= 12.5 ms (0.0125 * sample_rate)
+win_size: 1100 # For 22050Hz, 1100 ~= 50 ms (If None, win_size: fft_size) (0.05 * sample_rate)
+fft_size: 1100 # Extra window size is filled with 0 paddings to match this parameter
 fmin: 0 # Set this to 55 if your speaker is male! if female, 95 should help taking off noise. (To test depending on dataset. Pitch info: male~[65, 260], female~[100, 525])
 fmax: 8000 # To be increased/reduced depending on data.
 f0_min: 80
@@ -33,5 +33,5 @@ f0_max: 800
 kmeans_model_path: "./km200.bin"
 hubert_model: "facebook/hubert-base-ls960"
 
-use_spk_encoder: false
+use_spk_encoder: true
 lambda_grl: 0.01

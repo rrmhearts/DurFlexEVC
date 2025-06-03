@@ -94,7 +94,7 @@ class DurFlexEVCTask(SpeechBaseTask):
         losses["unit_accuracy"] = unit_accuracy
 
     def add_emo_loss(self, logits, target, losses=None):
-        emo_loss = self.cel(logits, target.long())  # (B * L_max,)로 변경
+        emo_loss = self.ce_loss(logits, target.long())  # (B * L_max,)로 변경
         emo_loss = emo_loss.sum() * hparams["lambda_grl"]
         pred = torch.argmax(logits, dim=-1)
         emo_accuracy = pred == target

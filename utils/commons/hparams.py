@@ -46,7 +46,7 @@ def set_hparams(
         parser.add_argument(
             "--config", type=str, default="", help="location of the data corpus"
         )
-        parser.add_argument("--exp_name", type=str, default="", help="exp_name")
+        parser.add_argument("--exp_name", type=str, default="experiment", help="exp_name")
         parser.add_argument(
             "-hp", "--hparams", type=str, default="", help="location of the data corpus"
         )
@@ -117,7 +117,8 @@ def set_hparams(
                 saved_hparams_ = yaml.safe_load(f)
                 if saved_hparams_ is not None:
                     saved_hparams.update(saved_hparams_)
-    hparams_["work_dir"] = args_work_dir
+
+    hparams_["work_dir"] = args_work_dir or hparams_["work_dir"]
 
     # Support config overriding in command line. Support list type config overriding.
     # Examples: --hparams="a=1,b.c=2,d=[1 1 1]"

@@ -15,7 +15,7 @@ import torch.distributed as dist
 import torch.multiprocessing as mp
 import torch.optim
 import torch.utils.data
-from torch.cuda.amp import GradScaler, autocast
+from torch import GradScaler, autocast
 from torch.nn.parallel import DistributedDataParallel as DDP
 
 from utils.commons.ckpt_utils import get_last_checkpoint, get_all_ckpts
@@ -351,7 +351,7 @@ class Trainer:
                         param.requires_grad = True
 
             # forward pass
-            with autocast(enabled=self.amp):
+            with autocast('cuda', enabled=self.amp):
                 if self.on_gpu:
                     batch = move_to_cuda(copy.copy(batch), self.root_gpu)
                 args = [batch, batch_idx, opt_idx]
